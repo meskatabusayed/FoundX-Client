@@ -1,8 +1,21 @@
 import { Button } from "@nextui-org/button";
 import Link from "next/link";
+
 import Container from "../../ui/Container";
 
+import getRecentPost from "@/src/services/RecentPost";
+
 export default async function RecentPosts() {
+  
+  const {data : posts} =await  getRecentPost();
+
+  
+  
+  
+  
+
+  
+
   return (
     <Container>
       <div className="section-title my-8">
@@ -12,7 +25,12 @@ export default async function RecentPosts() {
         </p>
       </div>
       <div className="my-8 grid justify-center gap-10 sm:grid-cols-1 md:grid-cols-4">
-        <h1>Recent Posts</h1>
+        
+        {
+          posts?.map((item) => (
+            <h1 key={item.index}>{item?.title}</h1>
+          ))
+        }
       </div>
       <div className="flex justify-center">
         <Button className="rounded-md bg-default-900 text-default" size="md">
