@@ -1,23 +1,27 @@
 
+import FXForm from "@/src/components/form/FXForm";
+import FXInput from "@/src/components/form/FXInput";
 import { Button } from "@nextui-org/button";
 import Link from "next/link";
 
 
 
 const LoginPage = () => {
-  
+  const onSubmit = (data) => {
+    console.log(data)
+  }
 
   return (
     <div className="flex h-[calc(100vh-200px)] w-full flex-col items-center justify-center">
       <h3 className="my-2 text-2xl font-bold">Login with FoundX</h3>
       <p className="mb-4">Welcome Back! Let&lsquo;s Get Started</p>
       <div className="w-[35%]">
-        
+        <FXForm onSubmit={onSubmit}>
           <div className="py-3">
-            
+            <FXInput label="Email" name="email"/>
           </div>
           <div className="py-3">
-            
+            <FXInput label="Password" name="password"/>
           </div>
 
           <Button
@@ -27,7 +31,7 @@ const LoginPage = () => {
           >
             Login
           </Button>
-        
+          </FXForm>
         <div className="text-center">
           Don&lsquo;t have account ? <Link href={"/register"}>Register</Link>
         </div>
