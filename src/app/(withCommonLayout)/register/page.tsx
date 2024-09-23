@@ -19,15 +19,20 @@ export default function RegisterPage() {
   const {mutate : handleUserRegistration , isPending, data , isError , isSuccess } = useMutation({
     mutationKey : ["USER_REGISTRATION"],
     mutationFn : async(userData) => await registerUser(userData),
+    onSuccess: () => {
+      console.log("Successfully")
+
+    }
   })
 
-  console.log({isPending , isSuccess})
+  console.log({isPending , isSuccess , data})
 
   const onSubmit: SubmitHandler<FieldValues> = async (data) => {
     const userData = {
       ...data,
       profilePhoto:"https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png"
     }
+    handleUserRegistration(userData)
     
   }
    
