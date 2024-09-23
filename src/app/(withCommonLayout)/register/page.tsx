@@ -16,14 +16,7 @@ import { FieldValues, SubmitHandler } from "react-hook-form";
 
 export default function RegisterPage() {
   
-  const {mutate : handleUserRegistration , isPending, data , isError , isSuccess } = useMutation({
-    mutationKey : ["USER_REGISTRATION"],
-    mutationFn : async(userData) => await registerUser(userData),
-    onSuccess: () => {
-      console.log("Successfully")
-
-    }
-  })
+  const {mutate : handleUserRegistration , isPending, data , isError , isSuccess } = 
 
   console.log({isPending , isSuccess , data})
 
