@@ -2,6 +2,7 @@
 
 import FXForm from "@/src/components/form/FXForm";
 import FXInput from "@/src/components/form/FXInput";
+import { useUserRegistration } from "@/src/hooks/auth.hook";
 import registerValidationSchema from "@/src/schemas/register.schema";
 import { registerUser } from "@/src/services/AuthServices";
 
@@ -16,9 +17,9 @@ import { FieldValues, SubmitHandler } from "react-hook-form";
 
 export default function RegisterPage() {
   
-  const {mutate : handleUserRegistration , isPending, data , isError , isSuccess } = 
+  const {mutate : handleUserRegistration} = useUserRegistration() 
 
-  console.log({isPending , isSuccess , data})
+  
 
   const onSubmit: SubmitHandler<FieldValues> = async (data) => {
     const userData = {
