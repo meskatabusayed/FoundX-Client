@@ -1,4 +1,5 @@
 "use client";
+import { useUser } from "@/src/context/user.provider";
 import { logout } from "@/src/services/AuthServices";
 import { Avatar } from "@nextui-org/avatar";
 import {
@@ -12,15 +13,22 @@ import React from "react";
 
 const NavabrDropdown = () => {
   const router = useRouter();
+  const { user ,setIsLoading : userLoading} = useUser()
 
   const handleNavigation = (pathName: string) => {
     router.push(pathName);
   };
 
+  const handleLogout = () => {
+    logout();
+    userLoading(true)
+
+  }
+
   return (
     <Dropdown>
       <DropdownTrigger>
-        <Avatar name="Junior" />
+        <Avatar src={user?.profilePhoto} />
       </DropdownTrigger>
       <DropdownMenu aria-label="Static Actions">
          <DropdownItem onClick={() => handleNavigation("/profile")}>
@@ -35,7 +43,7 @@ const NavabrDropdown = () => {
           Settings
         </DropdownItem> 
 
-        <DropdownItem onClick={() => logout()} key="delete" className="text-danger" color="danger">
+        <DropdownItem onClick={() => handleLogout()} key="delete" className="text-danger" color="danger">
           Logout
         </DropdownItem>
       </DropdownMenu>

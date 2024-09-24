@@ -1,11 +1,7 @@
-import React from 'react'
-
-const ClaimRequestsPage = () => {
-  return (
-    <div>
-      <h1>This is Cailm Request page</h1>
-    </div>
-  )
-}
-
-export default ClaimRequestsPage
+export default function page() {
+    return (
+      <div>
+        <h1> Claim Request Page </h1>
+      </div>
+    );
+  }
