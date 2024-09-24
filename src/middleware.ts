@@ -15,24 +15,19 @@ export async function middleware(request: NextRequest) {
 
     const {pathname} = request.nextUrl;
 
-    const userToken = await getCurrentUser();
-    console.log("19" , userToken);
+    const user = await getCurrentUser();
+    
 
 
 
-    /* const user = {name: "Mir Hussain",
-    email: "mir@gmail.com",
-    mobileNumber: "01711223344",
-    role: "USER",
-    status: "ACTIVE",}; */
-    const user = undefined;
+    
     
     if(!user){
         if(authRoutes.includes(pathname)){
             return NextResponse.next();
         }
         else{
-            return NextResponse.redirect(new URL('/login', request.url))
+            return NextResponse.redirect(new URL(`/login?redirect=${pathname}`, request.url))
         }
     }
 
@@ -49,5 +44,5 @@ export async function middleware(request: NextRequest) {
  
 // See "Matching Paths" below to learn more
 export const config = {
-  matcher: ["/profile" , "/login" , "/register"],
+  matcher: ["/profile" , "/profile/:page*" , "/admin" , "/login" , "/register"],
 }

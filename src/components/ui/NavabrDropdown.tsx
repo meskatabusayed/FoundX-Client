@@ -1,4 +1,5 @@
 "use client";
+import { logout } from "@/src/services/AuthServices";
 import { Avatar } from "@nextui-org/avatar";
 import {
   Dropdown,
@@ -34,8 +35,8 @@ const NavabrDropdown = () => {
           Settings
         </DropdownItem> 
 
-        <DropdownItem key="delete" className="text-danger" color="danger">
-          Delete file
+        <DropdownItem onClick={() => logout()} key="delete" className="text-danger" color="danger">
+          Logout
         </DropdownItem>
       </DropdownMenu>
     </Dropdown>
