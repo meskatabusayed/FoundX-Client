@@ -1,6 +1,7 @@
 import { NextResponse } from 'next/server'
 
 import type { NextRequest } from 'next/server'
+import { getCurrentUser } from './services/AuthServices';
 
 type TRole = keyof typeof roleBasedRoutes;
 
@@ -10,9 +11,20 @@ const roleBasedRoutes = {
     ADMIN : [/^\/admin/]
 }
 // This function can be marked `async` if using `await` inside
-export function middleware(request: NextRequest) {
+export async function middleware(request: NextRequest) {
 
     const {pathname} = request.nextUrl;
+
+    const userToken = await getCurrentUser();
+    console.log("19" , userToken);
+
+
+
+    /* const user = {name: "Mir Hussain",
+    email: "mir@gmail.com",
+    mobileNumber: "01711223344",
+    role: "USER",
+    status: "ACTIVE",}; */
     const user = undefined;
     
     if(!user){
