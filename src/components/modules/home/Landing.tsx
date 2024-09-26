@@ -1,5 +1,5 @@
-import { Input } from '@nextui-org/input'
-import { SearchIcon } from "../../icons";
+import { Input } from "@nextui-org/input";
+import { SearchIcon } from "../../../assets/icons";
 
 const Landing = () => {
   return (
@@ -22,7 +22,7 @@ const Landing = () => {
         </form>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default Landing
+export default Landing;
