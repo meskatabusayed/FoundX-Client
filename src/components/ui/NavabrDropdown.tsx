@@ -14,22 +14,29 @@ import React from "react";
 
 const NavabrDropdown = () => {
   const router = useRouter();
-  const { user ,setIsLoading : userLoading} = useUser()
+  const { user, setIsLoading: userLoading } = useUser();
   const pathname = usePathname();
-
-  
-  const handleNavigation = (pathName: string) => {
-    router.push(pathName);
-  };
 
   const handleLogout = () => {
     logout();
-    userLoading(true)
-    if (protectedRoutes.some((route) => pathname.match(route))) {
-      router.push("/");
+    userLoading(true);
+/* Problem */
+    console.log( "p" , pathname);
+    if (protectedRoutes.some((route) => {
+      console.log("r" , route)
+     return pathname.match(route)
     }
+    
+    )) {
+      
+      router.push("/");
+      
+    }
+  };
 
-  }
+  const handleNavigation = (pathName: string) => {
+    router.push(pathName);
+  };
 
   return (
     <Dropdown>
@@ -37,7 +44,7 @@ const NavabrDropdown = () => {
         <Avatar src={user?.profilePhoto} />
       </DropdownTrigger>
       <DropdownMenu aria-label="Static Actions">
-         <DropdownItem onClick={() => handleNavigation("/profile")}>
+        <DropdownItem onClick={() => handleNavigation("/profile")}>
           Profile
         </DropdownItem>
 
@@ -47,9 +54,14 @@ const NavabrDropdown = () => {
 
         <DropdownItem onClick={() => handleNavigation("/settings")}>
           Settings
-        </DropdownItem> 
+        </DropdownItem>
 
-        <DropdownItem onClick={() => handleLogout()} key="delete" className="text-danger" color="danger">
+        <DropdownItem
+          onClick={() => handleLogout()}
+          key="delete"
+          className="text-danger"
+          color="danger"
+        >
           Logout
         </DropdownItem>
       </DropdownMenu>
