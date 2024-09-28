@@ -6,12 +6,13 @@ import Link from "next/link";
 
 import { IPost, IUser } from "@/src/types";
 
-// import { Button } from "@nextui-org/button";
-// import ImageGallery from "./ImageGallery";
-// import ClaimRequestModal from "../../modals/ClaimRequestModal";
+
 import { useUser } from "@/src/context/user.provider";
 import ImageGallery from "./ImageGallery";
-// import AuthenticationModal from "../../modals/AuthenticationModal";
+import ClaimRequestModal from "../../modals/ClaimRequestModal";
+import AuthenticationModal from "../../modals/AuthenticationModal";
+import { Button } from "@nextui-org/button";
+
 
 interface IProps {
   post: IPost;
@@ -69,7 +70,7 @@ export default function Post({ post }: IProps) {
 
         <ImageGallery images={images} />
 
-        {/* <div className="mt-4 flex gap-5">
+        <div className="mt-4 flex gap-5">
           {email !== loggedInUser?.email && (
             <>
               {loggedInUser?.email && (
@@ -84,7 +85,7 @@ export default function Post({ post }: IProps) {
           <Button variant="light" className="flex-1">
             Share
           </Button>
-        </div> */}
+        </div> 
       </div>
     </div>
   );
